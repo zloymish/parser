@@ -1,10 +1,14 @@
 import sys
 
-#f = open("html/ЭЖД.html").read()
-
-import urllib.request
-url = sys.argv[1]
-f = urllib.request.urlopen(url).read().decode("utf8")
+if sys.argv[1] == "-u":
+	import urllib.request
+	url = sys.argv[2]
+	f = urllib.request.urlopen(url).read().decode("utf8")
+elif sys.argv[1] == "-p":
+	f = open(sys.argv[2]).read()
+else:
+	print("Usage:\npy3 html.py -u url\npy3 html.py -p path")
+	raise SystemExit
 
 tags = ["!DOCTYPE", "html", "head", "body", "a", "b", "br", "h1", "h2", "h3", "h4", "h5", "h6"]
 head_or_body = 0 #0 - uknown, 1 - head, 2 - body
