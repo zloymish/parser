@@ -1,7 +1,7 @@
 import sys
 
 def err_usage():
-	print("Usage:\npy3 html.py -u \"url\"\npy3 html.py -p \"path\"")
+	print("Usage:\npython3", sys.argv[0], "-u \"url\"\npython3", sys.argv[0], "-p \"path\"")
 	raise SystemExit
 
 if len(sys.argv) > 1:
