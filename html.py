@@ -16,8 +16,19 @@ if len(sys.argv) > 1:
 else:
 	err_usage()
 
-tags = ["!DOCTYPE", "html", "head", "body", "a", "b", "br", "h1", "h2", "h3", "h4", "h5", "h6"]
+
+
+tags = ["!DOCTYPE", "html", "head", "body", "br", "style", "script", "a", "button", "span"]
 head_or_body = 0 #0 - uknown, 1 - head, 2 - body
+style_ins = False
+script_ins = False
+
+
+def text_process(text):
+	text = text.replace("&nbsp;","")
+	if head_or_body == 2:
+		if not style_ins and not script_ins:
+			print(text, end = "")
 
 
 def tag_sep(tag_w_par):
@@ -44,7 +55,27 @@ def body(params, isClosing):
 	head_or_body = 0 if isClosing else 2
 
 def br(params, isClosing):
-	print("")
+	text_process('\n')
+
+def style(params, isClosing):
+	global style_ins
+	style_ins = False if isClosing else True
+
+def script(params, isClosing):
+	global script_ins
+	script_ins = False if isClosing else True
+
+def a(params, isClosing):
+	if not isClosing:
+		text_process('\n')
+
+def button(params, isClosing):
+	if not isClosing:
+		text_process("\n[button] ")
+
+def span(params, isClosing):
+	if not isClosing:
+		text_process('\n')
 
 
 
@@ -58,14 +89,11 @@ def tag_process(tag_w_par):
 			tag_func(params, isClosing)
 
 
-def text_process(text):
-	if head_or_body == 2:
-		print(text, end = "")
-
 
 tag_w_par = ""
 text = ""
 isTag = False
+wasSp = False
 for c in f:
 	if c == '<':
 		text_process(text)
@@ -73,7 +101,9 @@ for c in f:
 		isTag = True
 		continue
 	elif not isTag:
-		text += c
+		if c != '\n' and not (wasSp == True and c == ' '):
+			text += c
+		wasSp = True if c == ' ' else False
 		continue
 	if isTag:
 		if c != '>':
