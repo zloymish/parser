@@ -41,7 +41,7 @@ canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
 
 canvas.configure(yscrollcommand=scrollbar.set)
 
-x=Label(scrollable_frame, text="Sample scrolling label\n\n\n\n\n\n\n\naaa", background = "white", justify = LEFT)
+x=Label(scrollable_frame, text="Введите адрес в строку выше", background = "white", justify = LEFT)
 x.grid(column=0, row=0)
 
 i = 0

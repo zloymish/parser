@@ -1,15 +1,14 @@
 # - - - Выборочный парсер HTML - - - 
 
-# В проекте существуют 3 группы глобальных переменных:
-# pref_* - общие настройки и значения, par_* - параметры отображения по мере обработки документа, * - временные переменные парсера
+# В проекте существуют 2 группы глобальных переменных:
+# pref_* - общие настройки и значения, par_* - параметры отображения по мере обработки документа
 
-# To-do: теги, text/gui-режимы, свойства текста, атрибуты, фильтровка по атрибутам
-# css-парсер, cookies, привести всё к чистому виду, pytest, документация
+# To-do: теги, свойства текста, атрибуты, фильтровка по атрибутам, cookies, привести всё к чистому виду, pytest, документация
 
 # - - - PREFERENCES - - - 
 
 pref_encoding = "utf8"
-pref_guiMode = False
+pref_guiMode = True
 pref_replaceSpecSymsEnabled = True
 pref_filterEnabled = False
 pref_incEx = False #T - inclusive, F - exclusive
@@ -19,40 +18,26 @@ pref_singleTags = {"br", "hr", "img"} #tags without </tag>
 import sys
 
 def err_usage():
-    print("Usage:\n", sys.argv[0], "-u \"url\"\n", sys.argv[0], "-p \"path\"")
+    print("Usage:\n", sys.argv[0], "\nor\n", sys.argv[0], "-u \"url\"\n", sys.argv[0], "-p \"path\"")
     raise SystemExit
 
-pref_usingUrl = None
+pref_usingUrl = True
 pref_bashPrefs = pref_path = ""
-if len(sys.argv) < 2:
-    err_usage()
-for word in sys.argv[1:]:
-    if word[0] == "-":
-        pref_bashPrefs += word[1:]
-    else:
-        pref_path = word
+#if len(sys.argv) == 1: pass
+if len(sys.argv) == 2: err_usage()
 
-if not "u" in pref_bashPrefs and not "p" in pref_bashPrefs:
-    err_usage()
-if "u" in pref_bashPrefs:
-    pref_usingUrl = True
-if "p" in pref_bashPrefs:
-    pref_usingUrl = False
-if "f" in pref_bashPrefs:
-    pref_filterEnabled = True
-if "i" in pref_bashPrefs:
-    pref_incEx = True
-if "e" in pref_bashPrefs:
-    pref_incEx = False
-
-def get_file():
-    global pref_file
-    if pref_usingUrl:
-        import urllib.request
-        pref_file = urllib.request.urlopen(pref_path)
-    else:
-        pref_file = open(pref_path)
-get_file()
+if len(sys.argv) > 2:
+    for word in sys.argv[1:]:
+        if word[0] == "-": pref_bashPrefs += word[1:]
+        else: pref_path = word
+    
+    if not "u" in pref_bashPrefs and not "p" in pref_bashPrefs: err_usage()
+    if "u" in pref_bashPrefs: pref_usingUrl = True
+    if "p" in pref_bashPrefs: pref_usingUrl = False
+    if "t" in pref_bashPrefs: pref_guiMode = False
+    if "f" in pref_bashPrefs: pref_filterEnabled = True
+    if "i" in pref_bashPrefs: pref_incEx = True
+    if "e" in pref_bashPrefs: pref_incEx = False
 
 #special symbols
 if pref_replaceSpecSymsEnabled:
@@ -89,7 +74,6 @@ if pref_filterEnabled:
                 temp2 = line.split()
                 if temp2[0][-1] == ":":
                     pref_fltAttrs[temp2[0][:-1]] = temp2[1:]
-        #print(pref_fltAttrs)
         pref_filterFile.close()
         temp = temp2 = mode = None
     except:
@@ -97,19 +81,25 @@ if pref_filterEnabled:
         pref_filterEnabled = False
         #raise SystemExit
 
+def get_file():
+    global pref_file
+    if pref_usingUrl:
+        import urllib.request
+        pref_file = urllib.request.urlopen(pref_path)
+    else:
+        pref_file = open(pref_path)
+
 #tags:
 #html head body title pre h1..h6 b i tt cite em font a p br blockquote dl dt dd ol li ul div img hr table tr td th noframes form select option textarea input
 
 # - - - DISPLAY - - - 
 
-par_headOrBody = 0 #0 - uknown, 1 - head, 2 - body
 def backToDefault():
-    par_headOrBody = 0
-
-par_inStyle = par_inScript = False
-par_filtered = pref_incEx
-par_tags = [] #what tags we are inside
-par_cssProps = {} #what css properties we use, {tag : {class : {prop : value}}}
+    global pref_incEx, par_filtered, par_tags, par_attrs, par_cssProps
+    par_filtered = pref_incEx
+    par_tags = [] #what tags we are inside
+    par_attrs = [] #what attrs are going with the tags, [dict, dict, ...]
+    par_cssProps = {} #what css properties we use, {tag : {class : {prop : value}}}
 
 def tagSep(tagAndAttrs):
     tag = tagAndAttrs.split(' ').pop(0)
@@ -126,8 +116,7 @@ def attrsSep(tagAndAttrs):
     for word in attrs_list:
         if word != "=":
             if isParent:
-                if parent != "":
-                    attrs[parent] = None
+                if parent != "": attrs[parent] = None
                 parent = word
             else:
                 attrs[parent] = word
@@ -143,34 +132,28 @@ if pref_guiMode:
 else:
     from module_textMode import *
 
-
-
 #replacing special symbols
 def replaceSpecSyms(text):
-    if not pref_specSyms or text == "":
-        return text
+    if not pref_specSyms or text == "": return text
     output = sym = ""
     isCode = isSym = wasSym = wasAmp = False
     for c in text:
         if c == "&":
-            if isSym:
-                output += "&"
+            if isSym: output += "&"
             wasAmp = isSym = True
             output += sym
             sym = ""
             continue
         if wasSym:
             wasSym = False
-            if c == ";":
-                continue
+            if c == ";": continue
         if wasAmp:
             wasAmp = False
             if c == "#":
                 isCode = True
                 continue
         if isCode:
-            if c.isdigit():
-                sym += c
+            if c.isdigit(): sym += c
             else:
                 if sym != "":
                     output += chr(int(sym))
@@ -184,8 +167,7 @@ def replaceSpecSyms(text):
                 sym = ""
                 wasSym = True
                 isSym = False
-    if isSym:
-        output += "&" 
+    if isSym: output += "&" 
     output += sym
     return output
 
@@ -193,16 +175,15 @@ string = ""
 def textProcess(text):
     global string
     if not pref_filterEnabled or not par_filtered:
-        if par_headOrBody == 2 and not par_inStyle and not par_inScript:
+        if "body" in par_tags and not "style" in par_tags and not "script" in par_tags:
             text = replaceSpecSyms(text)
             if pref_guiMode:
                 string += text
             else:
-                #print(text, end = "")
-                string += text
+                print(text, end = "")
 
 def tagProcess(tagAndAttrs):
-    global pref_singleTags, pref_filterEnabled, pref_incEx, pref_fltTags, par_tags, par_filtered
+    global pref_singleTags, pref_filterEnabled, pref_incEx, pref_fltTags, par_tags, par_attrs, par_filtered
     tag = tagSep(tagAndAttrs)
     attrs = attrsSep(tagAndAttrs)
     isClosing = True if tagAndAttrs[0] == '/' else False
@@ -210,20 +191,18 @@ def tagProcess(tagAndAttrs):
     if not tag in pref_singleTags:
         if not isClosing:
             par_tags.append(tag)
+            par_attrs.append(attrs)
         else:
             for i in range(len(par_tags) - 1, -1, -1):
                 if par_tags[i] == tag:
                     par_tags = par_tags[:i]
+                    par_attrs = par_attrs[:i]
                     break
-    #print(pref_fltTags)
-    #print(par_tags)
     #filtering
     if not tag in pref_singleTags:
         singleFiltered = False 
-        #print("flt en = ", pref_filterEnabled)
         if pref_filterEnabled:
             par_filtered = False
-            #print("inc = ", pref_incEx)
             if pref_incEx:
                 for el in par_tags:
                     if not el in pref_fltTags:
@@ -237,7 +216,6 @@ def tagProcess(tagAndAttrs):
             singleFiltered = pref_filterEnabled and not tag in pref_fltTags
         else:
             singleFiltered = pref_filterEnabled and tag in pref_fltTags
-    #print(par_filtered)
     if not par_filtered and not singleFiltered:
         if tag in globals():
             globals()[tag](attrs, isClosing)
@@ -245,7 +223,7 @@ def tagProcess(tagAndAttrs):
 # - - - PARSER - - - 
 
 def parse_css():
-    global pref_file, par_cssProps
+    global pref_file, pref_usingUrl, pref_encoding, par_cssProps
     insideBlock = isCl = False
     tags = []
     classes = []
@@ -254,7 +232,8 @@ def parse_css():
     skipSymbols = ['@', ':', '#', '[', ']', '^', '>', '~', '+'] #неподдерживаемые символы
     skip = False #пропускаем неподдерживаемые символы
     
-    rawLine = pref_file.readline(100)
+    rawLine = pref_file.readline()
+    if pref_usingUrl: rawLine = rawLine.decode(pref_encoding)
     while rawLine:
         for c in rawLine.replace(" ", "").replace("\n", "").replace("\t", ""):
             if c == '{':
@@ -322,17 +301,17 @@ def parse_css():
                     continue
                 if isCl: cl += c
                 else: tag += c
-        rawLine = pref_file.readline(100)
+        rawLine = pref_file.readline()
+        if pref_usingUrl: rawLine = rawLine.decode(pref_encoding)
 
 def parse_html():
     global pref_usingUrl, pref_file, pref_encoding
     tagAndAttrs = ""
     text = ""
     isTag = False
-    # считываем файл построчно, т. к. он может оказаться большим
-    rawLine = pref_file.readline(100)
-    if pref_usingUrl:
-        rawLine = rawLine.decode(pref_encoding)
+    
+    rawLine = pref_file.readline()
+    if pref_usingUrl: rawLine = rawLine.decode(pref_encoding)
     while rawLine:
         for c in rawLine:
             if c == '<':
@@ -353,11 +332,19 @@ def parse_html():
                         tagProcess(tagAndAttrs.lower())
                     tagAndAttrs = ""
                     continue
-        rawLine = pref_file.readline(100)
-        if pref_usingUrl:
-            rawLine = rawLine.decode(pref_encoding)
+        rawLine = pref_file.readline()
+        if pref_usingUrl: rawLine = rawLine.decode(pref_encoding)
 
-parse_html()
-pref_file.close()
 
-from module_gui import *
+# - - - Actual program - - - 
+def run():
+    backToDefault()
+    if pref_path:
+        get_file()
+        parse_html()
+        pref_file.close()
+
+run()
+
+if pref_guiMode:
+    from module_gui import *
