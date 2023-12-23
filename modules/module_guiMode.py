@@ -19,13 +19,10 @@ def link(attrs, isClosing):
     :param isClosing: is the tag closing or not
     :type isClosing: bool"""
     
-    print(1)
     if "rel" in attrs and "href" in attrs:
         if attrs["rel"] == "stylesheet":
             path = m.getAbsPath(attrs["href"])
-            print(2)
             m.parse_css(m.get_file(path, True, False), m.par_cssProps)
-        else: print(3)
 
 def br(attrs, isClosing):
     """A function that processes br tag.

@@ -158,7 +158,6 @@ def getAbsPath(path):
         path = par_pathOrig + path
     elif path[0:2] == "//":
         path = "https:" + path
-    print(path)
     return path
 
 def closestAttr(attr):
@@ -358,7 +357,7 @@ def tagStack(tag, attrs, isClosing):
                     par_tags = par_tags[:i]
                     par_attrs = par_attrs[:i]
                     break
-    print(par_tags)
+    #print(par_tags)
     #print(par_attrs)
 
 def checkFilter(tag, attrs):
@@ -550,7 +549,7 @@ def parse_css(sourceFile, cssDict):
                 else: tag += c
         rawLine = sourceFile.readline()
         #if pref_usingUrl: rawLine = rawLine.decode(pref_encoding)
-    print(cssDict, '\n')
+    #print(cssDict, '\n')
 
 def parse_html():
     """Parses the HTML from pref_file and calls tagProcess if it went inside
@@ -608,8 +607,6 @@ def run():
     if pref_guiMode: initGui()
     if pref_path:
         pref_file = get_file(pref_path, pref_usingUrl, False)
-        print(pref_file.read())
-        pref_file.seek(0)
         parse_html()
         pref_file.close()
     if pref_guiMode: gui.runGui()

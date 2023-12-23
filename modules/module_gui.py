@@ -116,7 +116,6 @@ def setFont():
     fontFamily = m.closestCssVal("font-family")
     if fontFamily:
         family = fontFamily.split()[0]
-        print(family)
     fontWeight = m.closestCssVal("font-weight")
     if fontWeight == "bold": weight = "bold"
     elif fontWeight == "normal": weight = "normal"
@@ -160,7 +159,6 @@ def position():
     
     global row, column
     display = m.closestCssVal("display")
-    print("displ:", display)
     if "inline" in display:
         column += 1
     else:
@@ -223,7 +221,6 @@ def show(text):
         if len(l) > 0: lab = Label(l[-1], text="text", font=setFont(),
             fg = fg, bg = bg, justify = LEFT)
     if len(l) > 0: lab.config(text = text)
-    print(column)
     if len(l) > 0: lab.grid(row = 0, column = column, sticky = "wn")
     if len(l) > 0: 
         if column == 0: l[-1].grid(row = row, column = 0, sticky = align)
@@ -238,7 +235,6 @@ def showImg(img):
     
     import os
     image = ImageTk.PhotoImage(Image.open(img.name))
-    print("1234567890")
     l.append(
     Label(scrollable_frame, image = image, justify = LEFT))
     l[-1].image = image
