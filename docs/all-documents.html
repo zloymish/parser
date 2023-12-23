@@ -1,0 +1,755 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+  <head>
+    
+    <title>All Documents</title>
+    <meta name="generator" content="pydoctor 23.9.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+  <body>
+    
+
+    
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          parser/module_gui/module_textMode/module_guiMode <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+    
+    
+    <div class="container">
+      <h1>All Documents</h1>
+
+       <ul>
+          <li id="parser">
+            
+            <div class="fullName">parser</div>
+            <div class="url">parser.html</div>
+            <div class="type">Module</div>
+            <div class="kind">Module</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">No module docstring; 0/17 variable, 19/19 functions documented</span></div>
+          </li><li id="module_gui">
+            
+            <div class="fullName">module<wbr></wbr>_gui</div>
+            <div class="url">module_gui.html</div>
+            <div class="type">Module</div>
+            <div class="kind">Module</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">No module docstring; 0/16 variable, 11/11 functions documented</span></div>
+          </li><li id="module_guiMode">
+            
+            <div class="fullName">module_gui<wbr></wbr>Mode</div>
+            <div class="url">module_guiMode.html</div>
+            <div class="type">Module</div>
+            <div class="kind">Module</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">No module docstring; 10/10 functions documented</span></div>
+          </li><li id="module_textMode">
+            
+            <div class="fullName">module_text<wbr></wbr>Mode</div>
+            <div class="url">module_textMode.html</div>
+            <div class="type">Module</div>
+            <div class="kind">Module</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="parser.pref_encoding">
+            
+            <div class="fullName">parser<wbr></wbr>.pref<wbr></wbr>_encoding</div>
+            <div class="url">parser.html#pref_encoding</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="parser.pref_guiMode">
+            
+            <div class="fullName">parser<wbr></wbr>.pref_gui<wbr></wbr>Mode</div>
+            <div class="url">parser.html#pref_guiMode</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="parser.pref_replaceSpecSymsEnabled">
+            
+            <div class="fullName">parser<wbr></wbr>.pref_replace<wbr></wbr>Spec<wbr></wbr>Syms<wbr></wbr>Enabled</div>
+            <div class="url">parser.html#pref_replaceSpecSymsEnabled</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="parser.pref_filterEnabled">
+            
+            <div class="fullName">parser<wbr></wbr>.pref_filter<wbr></wbr>Enabled</div>
+            <div class="url">parser.html#pref_filterEnabled</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="parser.pref_incEx">
+            
+            <div class="fullName">parser<wbr></wbr>.pref_inc<wbr></wbr>Ex</div>
+            <div class="url">parser.html#pref_incEx</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="parser.pref_singleTags">
+            
+            <div class="fullName">parser<wbr></wbr>.pref_single<wbr></wbr>Tags</div>
+            <div class="url">parser.html#pref_singleTags</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="parser.err_usage">
+            
+            <div class="fullName">parser<wbr></wbr>.err<wbr></wbr>_usage</div>
+            <div class="url">parser.html#err_usage</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">was called with bad arguments.</div>
+          </li><li id="parser.pref_usingUrl">
+            
+            <div class="fullName">parser<wbr></wbr>.pref_using<wbr></wbr>Url</div>
+            <div class="url">parser.html#pref_usingUrl</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="parser.pref_bashPrefs">
+            
+            <div class="fullName">parser<wbr></wbr>.pref_bash<wbr></wbr>Prefs</div>
+            <div class="url">parser.html#pref_bashPrefs</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="parser.pref_path">
+            
+            <div class="fullName">parser<wbr></wbr>.pref<wbr></wbr>_path</div>
+            <div class="url">parser.html#pref_path</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="parser.pref_specSymsFile">
+            
+            <div class="fullName">parser<wbr></wbr>.pref_spec<wbr></wbr>Syms<wbr></wbr>File</div>
+            <div class="url">parser.html#pref_specSymsFile</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="parser.temp">
+            
+            <div class="fullName">parser<wbr></wbr>.temp</div>
+            <div class="url">parser.html#temp</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="parser.pref_specSyms">
+            
+            <div class="fullName">parser<wbr></wbr>.pref_spec<wbr></wbr>Syms</div>
+            <div class="url">parser.html#pref_specSyms</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="parser.pref_fltTags">
+            
+            <div class="fullName">parser<wbr></wbr>.pref_flt<wbr></wbr>Tags</div>
+            <div class="url">parser.html#pref_fltTags</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="parser.pref_fltAttrs">
+            
+            <div class="fullName">parser<wbr></wbr>.pref_flt<wbr></wbr>Attrs</div>
+            <div class="url">parser.html#pref_fltAttrs</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="parser.temp2">
+            
+            <div class="fullName">parser<wbr></wbr>.temp2</div>
+            <div class="url">parser.html#temp2</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="parser.mode">
+            
+            <div class="fullName">parser<wbr></wbr>.mode</div>
+            <div class="url">parser.html#mode</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="parser.pref_filterFile">
+            
+            <div class="fullName">parser<wbr></wbr>.pref_filter<wbr></wbr>File</div>
+            <div class="url">parser.html#pref_filterFile</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="parser.strToFile">
+            
+            <div class="fullName">parser<wbr></wbr>.str<wbr></wbr>To<wbr></wbr>File</div>
+            <div class="url">parser.html#strToFile</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Writes the given str to file and returns it.</div>
+          </li><li id="parser.get_file">
+            
+            <div class="fullName">parser<wbr></wbr>.get<wbr></wbr>_file</div>
+            <div class="url">parser.html#get_file</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Returns the file by the url or the path stored in variable path. Depends on isUrl in using the url or the local path. If isBin == True, creates a binary file.</div>
+          </li><li id="parser.backToDefault">
+            
+            <div class="fullName">parser<wbr></wbr>.back<wbr></wbr>To<wbr></wbr>Default</div>
+            <div class="url">parser.html#backToDefault</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Returns the global variables that can change to their initial values.</div>
+          </li><li id="parser.getAbsPath">
+            
+            <div class="fullName">parser<wbr></wbr>.get<wbr></wbr>Abs<wbr></wbr>Path</div>
+            <div class="url">parser.html#getAbsPath</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Returns absolute path.</div>
+          </li><li id="parser.closestAttr">
+            
+            <div class="fullName">parser<wbr></wbr>.closest<wbr></wbr>Attr</div>
+            <div class="url">parser.html#closestAttr</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Returns the closest attribute value in par_attrs.</div>
+          </li><li id="parser.findCssVal">
+            
+            <div class="fullName">parser<wbr></wbr>.find<wbr></wbr>Css<wbr></wbr>Val</div>
+            <div class="url">parser.html#findCssVal</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Returns the css value if it exists.</div>
+          </li><li id="parser.closestCssVal">
+            
+            <div class="fullName">parser<wbr></wbr>.closest<wbr></wbr>Css<wbr></wbr>Val</div>
+            <div class="url">parser.html#closestCssVal</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Returns the closest css value by property.</div>
+          </li><li id="parser.tagSep">
+            
+            <div class="fullName">parser<wbr></wbr>.tag<wbr></wbr>Sep</div>
+            <div class="url">parser.html#tagSep</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Separates html-tag from the string with tag and attributes and returns it.</div>
+          </li><li id="parser.attrsSep">
+            
+            <div class="fullName">parser<wbr></wbr>.attrs<wbr></wbr>Sep</div>
+            <div class="url">parser.html#attrsSep</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Separates attributes from the string with tag and attributes and returns it.</div>
+          </li><li id="module_guiMode.body">
+            
+            <div class="fullName">module_gui<wbr></wbr>Mode<wbr></wbr>.body</div>
+            <div class="url">module_guiMode.html#body</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">A function that processes body tag.</div>
+          </li><li id="module_guiMode.link">
+            
+            <div class="fullName">module_gui<wbr></wbr>Mode<wbr></wbr>.link</div>
+            <div class="url">module_guiMode.html#link</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">A function that processes link tag.</div>
+          </li><li id="module_guiMode.br">
+            
+            <div class="fullName">module_gui<wbr></wbr>Mode<wbr></wbr>.br</div>
+            <div class="url">module_guiMode.html#br</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">A function that processes br tag.</div>
+          </li><li id="module_guiMode.span">
+            
+            <div class="fullName">module_gui<wbr></wbr>Mode<wbr></wbr>.span</div>
+            <div class="url">module_guiMode.html#span</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">A function that processes span tag.</div>
+          </li><li id="module_guiMode.a">
+            
+            <div class="fullName">module_gui<wbr></wbr>Mode<wbr></wbr>.a</div>
+            <div class="url">module_guiMode.html#a</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">A function that processes a tag.</div>
+          </li><li id="module_guiMode.b">
+            
+            <div class="fullName">module_gui<wbr></wbr>Mode<wbr></wbr>.b</div>
+            <div class="url">module_guiMode.html#b</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">A function that processes b tag.</div>
+          </li><li id="module_guiMode.button">
+            
+            <div class="fullName">module_gui<wbr></wbr>Mode<wbr></wbr>.button</div>
+            <div class="url">module_guiMode.html#button</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">A function that processes button tag.</div>
+          </li><li id="module_guiMode.base">
+            
+            <div class="fullName">module_gui<wbr></wbr>Mode<wbr></wbr>.base</div>
+            <div class="url">module_guiMode.html#base</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">A function that processes base tag.</div>
+          </li><li id="module_guiMode.img">
+            
+            <div class="fullName">module_gui<wbr></wbr>Mode<wbr></wbr>.img</div>
+            <div class="url">module_guiMode.html#img</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">A function that processes img tag.</div>
+          </li><li id="module_guiMode.font">
+            
+            <div class="fullName">module_gui<wbr></wbr>Mode<wbr></wbr>.font</div>
+            <div class="url">module_guiMode.html#font</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">A function that processes font tag.</div>
+          </li><li id="parser.replaceSpecSyms">
+            
+            <div class="fullName">parser<wbr></wbr>.replace<wbr></wbr>Spec<wbr></wbr>Syms</div>
+            <div class="url">parser.html#replaceSpecSyms</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Replaces the special symbols such as &amp;nbsp; in a given text and returns the output.</div>
+          </li><li id="parser.tagStack">
+            
+            <div class="fullName">parser<wbr></wbr>.tag<wbr></wbr>Stack</div>
+            <div class="url">parser.html#tagStack</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Adds the given tag to the list par_tags if isClosing == False. If isClosing == True, removes all the tags from the end to the first tag that the same as given. If there's no such tag in par_tags and isClosing == True, does nothing...</div>
+          </li><li id="parser.checkFilter">
+            
+            <div class="fullName">parser<wbr></wbr>.check<wbr></wbr>Filter</div>
+            <div class="url">parser.html#checkFilter</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Checks if the tag and attrs are in those that are filtered. If inclusive filtering is preferred (pref_incEx == True), the blocks with tags and attrs that are only in filter are shown; if exclusive filtering is preferred (pref_incEx == False), the blocks with tags and attrs that are only not in filter are shown...</div>
+          </li><li id="parser.initGui">
+            
+            <div class="fullName">parser<wbr></wbr>.init<wbr></wbr>Gui</div>
+            <div class="url">parser.html#initGui</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Inits the module with graphical interface.</div>
+          </li><li id="parser.textProcess">
+            
+            <div class="fullName">parser<wbr></wbr>.text<wbr></wbr>Process</div>
+            <div class="url">parser.html#textProcess</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Sends the given text to some output, stdout or GUI depending on pref_guiMode. Follows the filtering.</div>
+          </li><li id="parser.tagProcess">
+            
+            <div class="fullName">parser<wbr></wbr>.tag<wbr></wbr>Process</div>
+            <div class="url">parser.html#tagProcess</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Processes a raw tag-and-attributes str splitting it in tag as an str and attributes as a dict, calls tagStack function to manage tag location in the document, calls checkFilter if pref_filterEnabled == True and calls the function with the same name as a tag if it exists.</div>
+          </li><li id="parser.parse_css">
+            
+            <div class="fullName">parser<wbr></wbr>.parse<wbr></wbr>_css</div>
+            <div class="url">parser.html#parse_css</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Parses CSS code from the given file and stores the CSS properties in cssDict.</div>
+          </li><li id="parser.parse_html">
+            
+            <div class="fullName">parser<wbr></wbr>.parse<wbr></wbr>_html</div>
+            <div class="url">parser.html#parse_html</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Parses the HTML from pref_file and calls tagProcess if it went inside &lt;&gt;, or textProcess if it is outside of &lt;&gt;.</div>
+          </li><li id="parser.run">
+            
+            <div class="fullName">parser<wbr></wbr>.run</div>
+            <div class="url">parser.html#run</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Calls all the needed functions to run the program: reset the variables that can change, load, parse and close the file.</div>
+          </li><li id="module_gui.col_bg">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.col<wbr></wbr>_bg</div>
+            <div class="url">module_gui.html#col_bg</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="module_gui.col_light">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.col<wbr></wbr>_light</div>
+            <div class="url">module_gui.html#col_light</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="module_gui.col_dark">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.col<wbr></wbr>_dark</div>
+            <div class="url">module_gui.html#col_dark</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="module_gui.col_form">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.col<wbr></wbr>_form</div>
+            <div class="url">module_gui.html#col_form</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="module_gui.window">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.window</div>
+            <div class="url">module_gui.html#window</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="module_gui.setTitle">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.set<wbr></wbr>Title</div>
+            <div class="url">module_gui.html#setTitle</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Sets the title of the window.</div>
+          </li><li id="module_gui.toolbar">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.toolbar</div>
+            <div class="url">module_gui.html#toolbar</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="module_gui.reply">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.reply</div>
+            <div class="url">module_gui.html#reply</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Sends url to the main module and loads the new page.</div>
+          </li><li id="module_gui.urlBox">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.url<wbr></wbr>Box</div>
+            <div class="url">module_gui.html#urlBox</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="module_gui.style">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.style</div>
+            <div class="url">module_gui.html#style</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="module_gui.bg">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.bg</div>
+            <div class="url">module_gui.html#bg</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="module_gui.setBody">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.set<wbr></wbr>Body</div>
+            <div class="url">module_gui.html#setBody</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Sets the background and other settings that are related to body.</div>
+          </li><li id="module_gui.container">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.container</div>
+            <div class="url">module_gui.html#container</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="module_gui.canvas">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.canvas</div>
+            <div class="url">module_gui.html#canvas</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="module_gui.scrollbar">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.scrollbar</div>
+            <div class="url">module_gui.html#scrollbar</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="module_gui.scrollable_frame">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.scrollable<wbr></wbr>_frame</div>
+            <div class="url">module_gui.html#scrollable_frame</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="module_gui.resize">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.resize</div>
+            <div class="url">module_gui.html#resize</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Resizes the window.</div>
+          </li><li id="module_gui.setFont">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.set<wbr></wbr>Font</div>
+            <div class="url">module_gui.html#setFont</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Sets the font.</div>
+          </li><li id="module_gui.setFg">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.set<wbr></wbr>Fg</div>
+            <div class="url">module_gui.html#setFg</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Sets foreground.</div>
+          </li><li id="module_gui.setBg">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.set<wbr></wbr>Bg</div>
+            <div class="url">module_gui.html#setBg</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Sets background.</div>
+          </li><li id="module_gui.position">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.position</div>
+            <div class="url">module_gui.html#position</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Sets position.</div>
+          </li><li id="module_gui.l">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.l</div>
+            <div class="url">module_gui.html#l</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="module_gui.row">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.row</div>
+            <div class="url">module_gui.html#row</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="module_gui.column">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.column</div>
+            <div class="url">module_gui.html#column</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Variable</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="module_gui.show">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.show</div>
+            <div class="url">module_gui.html#show</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Shows the text as label.</div>
+          </li><li id="module_gui.showImg">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.show<wbr></wbr>Img</div>
+            <div class="url">module_gui.html#showImg</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Shows the image.</div>
+          </li><li id="module_gui.runGui">
+            
+            <div class="fullName">module<wbr></wbr>_gui<wbr></wbr>.run<wbr></wbr>Gui</div>
+            <div class="url">module_gui.html#runGui</div>
+            <div class="type">Function</div>
+            <div class="kind">Function</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">Runs the gui.</div>
+          </li>
+       </ul>
+    </div>
+  </body>
+</html>

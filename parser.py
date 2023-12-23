@@ -1,9 +1,7 @@
 # - - - Выборочный парсер HTML - - - 
 
-# В проекте существуют 2 группы глобальных переменных:
+# В проекте есть 2 группы глобальных переменных:
 # pref_* - общие настройки и значения, par_* - параметры отображения по мере обработки документа
-
-# To-do: теги, свойства текста, cookies, pytest
 
 # - - - PREFERENCES - - - 
 
@@ -12,10 +10,11 @@ pref_guiMode = True
 pref_replaceSpecSymsEnabled = True
 pref_filterEnabled = False
 pref_incEx = False #T - inclusive, F - exclusive
-pref_singleTags = {"br", "hr", "img"} #tags without </tag>
+pref_singleTags = {"area", "base", "br", "col", "command", "embed", "hr", "img", "input", "keygen", "link", "meta", "param", "source", "track", "wbr"} #tags without </tag>
 
 #getting prefs from bash
 import sys
+sys.path.append("./modules")
 
 def err_usage():
     """Prints the error message in stdout and raises SystemExit if the program
@@ -89,28 +88,149 @@ if pref_filterEnabled:
         print("filter.txt file not found! Disabling filter...\n")
         pref_filterEnabled = False
 
-def get_file():
-    """Gets the file in pref_file by the url or the path stored in pref_path. 
-    Depends on pref_usingUrl in using the url or the local path."""
+def strToFile(text):
+    """Writes the given str to file and returns it.
     
-    global pref_usingUrl, pref_path, pref_file
-    if pref_usingUrl:
-        import urllib.request
-        pref_file = urllib.request.urlopen(pref_path)
+    :param text: given str
+    :type text: str
+    :returns: file with the str
+    :rtype: file"""
+    
+    with open(".tmp", "w") as tmpFile:
+        tmpFile.write(text)
+    return open(".tmp")
+
+def get_file(path, isUrl, isBin):
+    """Returns the file by the url or the path stored in variable path. 
+    Depends on isUrl in using the url or the local path. If isBin == True,
+    creates a binary file.
+    
+    :param path: path of the file
+    :type path: str
+    :param isUrl: is it the URL or the local path 
+    :type isUrl: bool
+    :param isBin: make the file binary or standard
+    :type isBin: bool
+    :returns: file
+    :rtype: file"""
+    
+    if isUrl:
+        import requests
+        if isBin:
+            with open(".tmp", "wb") as tmpFile:
+                tmpFile.write(requests.get(path).content)
+            return open(".tmp", "rb")
+        else: return strToFile(requests.get(path).text)
     else:
-        pref_file = open(pref_path)
+        settings = "rb" if isBin else "r"
+        return open(path, settings)
 
-
-# - - - DISPLAY - - - 
+# - - - DISPLAYING - - - 
 
 def backToDefault():
     """Returns the global variables that can change to their initial values."""
     
-    global pref_incEx, par_filtered, par_tags, par_attrs, par_cssProps
+    global pref_path, pref_incEx, par_pathOrig, par_filtered, par_tags
+    global par_attrs, par_cssProps, par_fontSize, par_fontColor
+    global par_fontFace
+    par_pathOrig = pref_path
     par_filtered = pref_incEx
     par_tags = [] #what tags we are inside
     par_attrs = [] #what attrs are going with the tags, [dict, dict, ...]
     par_cssProps = {} #what css props we use, {tag : {class : {prop : value}}}
+    
+    par_fontSize = par_fontColor = par_fontFace = "" #used only for 
+    #html tag <font>, not css fonts
+
+def getAbsPath(path):
+    """Returns absolute path.
+    
+    :param path: local or absolute path
+    :type path: str
+    :returns: absolute path
+    :rtype: str"""
+    
+    global par_pathOrig
+    if not par_pathOrig or not path: return path
+    if not "http" in path and path[0:2] != "//":
+        if par_pathOrig[-1] == "/" and path[0] == "/": path = path[1:]
+        elif par_pathOrig[-1] != "/" and path[0] != "/": path = "/" + path
+        path = par_pathOrig + path
+    elif path[0:2] == "//":
+        path = "https:" + path
+    print(path)
+    return path
+
+def closestAttr(attr):
+    """Returns the closest attribute value in par_attrs.
+    
+    :param attr: attribute
+    :type attr: str
+    :returns: attribute value
+    :rtype: str"""
+    
+    global par_attrs
+    for num in range(len(par_attrs) - 1, -1, -1):
+        if attr in par_attrs[num]:
+            return par_attrs[num][attr]
+    return ""
+
+def findCssVal(tag, cl, prop):
+    """Returns the css value if it exists.
+    
+    :param tag: tag
+    :type tag: str
+    :param cl: class
+    :type cl: str
+    :param prop: property
+    :type prop: str
+    :returns: value
+    :rtype: str"""
+    
+    global par_cssProps
+    if tag in par_cssProps:
+        if cl in par_cssProps[tag]:
+            if prop in par_cssProps[tag][cl]:
+                return par_cssProps[tag][cl][prop]
+    return ""
+
+def closestCssVal(prop):
+    """Returns the closest css value by property.
+    
+    :param prop: property
+    :type prop: str
+    :returns: value
+    :rtype: str"""
+    
+    #приоритеты: attr -> id -> class -> tag
+    global par_tags, par_attrs
+    if not par_attrs or not par_tags: return ""
+    if "style" in par_attrs[-1]:
+        style = "*{" + par_attrs[-1]["style"] + "}"
+        localCssDict = {}
+        parse_css(strToFile(style), localCssDict)
+        if "*" in localCssDict:
+            if "*" in localCssDict["*"]:
+                if prop in localCssDict["*"]["*"]:
+                    return localCssDict["*"]["*"][prop]
+    for num in range(len(par_tags) - 1, -1, -1):
+        tag = par_tags[num]
+        iden = ""
+        if "id" in par_attrs[num]: iden = par_attrs[num]["id"]
+        if iden:
+            val = findCssVal("*", iden, prop)
+            if val: return val
+        if "class" in par_attrs[num]: cls = par_attrs[num]["class"].split()
+        else: cls = []
+        #смотрим классы
+        for cl in range(len(cls) - 1, -1, -1):
+            val = findCssVal("*", cls[cl], prop)
+            if not val: val = findCssVal(tag, cls[cl], prop)
+            if val: return val
+        #смотрим теги
+        val = findCssVal(tag, "*", prop)
+        if val: return val
+    return ""
 
 def tagSep(tagAndAttrs):
     """Separates html-tag from the string with tag and attributes
@@ -150,7 +270,7 @@ def attrsSep(tagAndAttrs):
                 if parent != "": attrs[parent] = ""
                 parent = word
             else:
-                attrs[parent] = word
+                attrs[parent] = word[1:-1] #removing quots
                 parent = ""
                 isParent = True
         else:
@@ -238,6 +358,8 @@ def tagStack(tag, attrs, isClosing):
                     par_tags = par_tags[:i]
                     par_attrs = par_attrs[:i]
                     break
+    print(par_tags)
+    #print(par_attrs)
 
 def checkFilter(tag, attrs):
     """Checks if the tag and attrs are in those that are filtered.
@@ -252,7 +374,8 @@ def checkFilter(tag, attrs):
     :param attrs: given attributes
     :type attrs: dict"""
     
-    global pref_singleTags, pref_fltTags, pref_fltAttrs, pref_incEx, par_tags, par_attrs, par_filtered
+    global pref_singleTags, pref_fltTags, pref_fltAttrs, pref_incEx, par_tags
+    global par_attrs, par_filtered
     if not tag in pref_singleTags:
         singleFiltered = False 
         par_filtered = False
@@ -285,7 +408,12 @@ def checkFilter(tag, attrs):
         else: singleFiltered = tag in pref_fltTags
     return singleFiltered
 
-string = ""
+def initGui():
+    """Inits the module with graphical interface."""
+    
+    global gui
+    import module_gui as gui
+
 def textProcess(text):
     """Sends the given text to some output, stdout or GUI depending on
     pref_guiMode. Follows the filtering.
@@ -293,14 +421,17 @@ def textProcess(text):
     :param text: given text
     :type text: str"""
     
-    global string
     if not pref_filterEnabled or not par_filtered:
-        if "body" in par_tags and not "style" in par_tags and not "script" in par_tags:
+        if "body" in par_tags and not "style" in par_tags\
+            and not "script" in par_tags:
             text = replaceSpecSyms(text)
-            if pref_guiMode:
-                string += text
-            else:
-                print(text, end = "")
+            if pref_guiMode: gui.show(text)
+            else: print(text, end = "")
+        elif "style" in par_tags:
+            parse_css(strToFile(text), par_cssProps)
+        elif "title" in par_tags:
+            if pref_guiMode: gui.setTitle(text)
+            else: print("Visiting \"", text, "\"", sep = "")
 
 def tagProcess(tagAndAttrs):
     """Processes a raw tag-and-attributes str splitting it in tag as an str
@@ -311,12 +442,15 @@ def tagProcess(tagAndAttrs):
     :param tagAndAttrs: tag and attributes in one str
     :type tagAndAttrs: str"""
     
+    if tagAndAttrs[0] == "!": return
+    
     global pref_filterEnabled, par_filtered
     tag = tagSep(tagAndAttrs)
     attrs = attrsSep(tagAndAttrs)
     isClosing = True if tagAndAttrs[0] == '/' else False
     
     tagStack(tag, attrs, isClosing)
+    singleFiltered = False
     if pref_filterEnabled: singleFiltered = checkFilter(tag, attrs)
     
     if not par_filtered and not singleFiltered:
@@ -325,23 +459,29 @@ def tagProcess(tagAndAttrs):
 
 # - - - PARSER - - - 
 
-def parse_css():
-    """Parses CSS code from the pref_file variable and stores the CSS
-    properties in par_cssProps."""
+def parse_css(sourceFile, cssDict):
+    """Parses CSS code from the given file and stores the CSS
+    properties in cssDict.
     
-    global pref_file, pref_usingUrl, pref_encoding, par_cssProps
+    :param sourceFile: given file
+    :type sourceFile: file
+    :param cssDict: dict the properties are stored in
+    :type cssDict: dict"""
+    
+    global pref_usingUrl, pref_encoding
     insideBlock = isCl = False
     tags = []
     classes = []
     tag = cl = prop = value = ""
     propOrVal = True # T - property, F - value
-    skipSymbols = ['@', ':', '#', '[', ']', '^', '>', '~', '+'] #неподдерживаемые символы
+    #неподдерживаемые символы
+    skipSymbols = ['@', ':', '#', '[', ']', '^', '>', '~', '+']
     skip = False #пропускаем неподдерживаемые символы
     
-    rawLine = pref_file.readline()
-    if pref_usingUrl: rawLine = rawLine.decode(pref_encoding)
+    rawLine = sourceFile.readline()
+    #if pref_usingUrl: rawLine = rawLine.decode(pref_encoding)
     while rawLine:
-        for c in rawLine.replace(" ", "").replace("\n", "").replace("\t", ""):
+        for c in rawLine.replace("\n", "").replace("#", "."):
             if c == '{':
                 if isCl: 
                     if cl: classes.append(cl)
@@ -356,12 +496,12 @@ def parse_css():
             if c == '}':
                 if prop:
                     for tag in tags:
-                        if not tag in par_cssProps:
-                            par_cssProps[tag] = {}
+                        if not tag in cssDict:
+                            cssDict[tag] = {}
                         for cl in classes:
-                            if not cl in par_cssProps[tag]:
-                                par_cssProps[tag][cl] = {}
-                            par_cssProps[tag][cl][prop] = value
+                            if not cl in cssDict[tag]:
+                                cssDict[tag][cl] = {}
+                            cssDict[tag][cl][prop] = value
                 insideBlock = False
                 propOrVal = True
                 tags = []
@@ -373,17 +513,18 @@ def parse_css():
             if insideBlock:
                 if c == ':':
                     propOrVal = False
+                    prop = prop.replace(' ', '').replace('\t', '')
                     continue
                 if c == ';':
                     propOrVal = True
                     if prop:
                         for tag in tags:
-                            if not tag in par_cssProps:
-                                par_cssProps[tag] = {}
+                            if not tag in cssDict:
+                                cssDict[tag] = {}
                             for cl in classes:
-                                if not cl in par_cssProps[tag]:
-                                    par_cssProps[tag][cl] = {}
-                                par_cssProps[tag][cl][prop] = value
+                                if not cl in cssDict[tag]:
+                                    cssDict[tag][cl] = {}
+                                cssDict[tag][cl][prop] = value
                     prop = value = ""
                     continue
                 if propOrVal: prop += c
@@ -407,22 +548,36 @@ def parse_css():
                     continue
                 if isCl: cl += c
                 else: tag += c
-        rawLine = pref_file.readline()
-        if pref_usingUrl: rawLine = rawLine.decode(pref_encoding)
+        rawLine = sourceFile.readline()
+        #if pref_usingUrl: rawLine = rawLine.decode(pref_encoding)
+    print(cssDict, '\n')
 
 def parse_html():
-    """Parses the HTML file and calls tagProcess if it went inside <>,
-    or textProcess if it is outside of <>."""
+    """Parses the HTML from pref_file and calls tagProcess if it went inside
+    <>, or textProcess if it is outside of <>."""
     
-    global pref_usingUrl, pref_file, pref_encoding
+    global pref_usingUrl, pref_file, pref_encoding, par_tags
     tagAndAttrs = ""
     text = ""
     isTag = False
     
-    rawLine = pref_file.readline()
-    if pref_usingUrl: rawLine = rawLine.decode(pref_encoding)
-    while rawLine:
+    rawLine = pref_file.read()
+    for i in range(1):
         for c in rawLine:
+            if "script" in par_tags: #<> brackets can appear in JS as
+            #comparison operators, so we need a special case of processing
+            #the scripts. We don't parse JS, so we can skip it.
+                if c == "<": isTag = True
+                if isTag:
+                    tagAndAttrs += c
+                    if not tagAndAttrs in "</script>":
+                        isTag = False
+                        tagAndAttrs = ""
+                    if tagAndAttrs == "</script>":
+                        isTag = False
+                        tagProcess(tagAndAttrs[1:-1])
+                        tagAndAttrs = ""
+                continue
             if c == '<':
                 textProcess(" ".join(text.replace("\n","").split()))
                 text = ""
@@ -441,22 +596,22 @@ def parse_html():
                         tagProcess(tagAndAttrs.lower())
                     tagAndAttrs = ""
                     continue
-        rawLine = pref_file.readline()
-        if pref_usingUrl: rawLine = rawLine.decode(pref_encoding)
 
 
 # - - - Actual program - - - 
 def run():
-    """Calls all the needed functions to process the document:
+    """Calls all the needed functions to run the program:
     reset the variables that can change, load, parse and close the file."""
     
+    global pref_usingUrl, pref_path, pref_file
     backToDefault()
+    if pref_guiMode: initGui()
     if pref_path:
-        get_file()
+        pref_file = get_file(pref_path, pref_usingUrl, False)
+        print(pref_file.read())
+        pref_file.seek(0)
         parse_html()
         pref_file.close()
+    if pref_guiMode: gui.runGui()
 
 run()
-
-#if pref_guiMode:
-    #from module_gui import *

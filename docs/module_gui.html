@@ -1,0 +1,1304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>module_gui</title>
+    <meta name="generator" content="pydoctor 23.9.1"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default mainnavbar">
+      
+  
+  <div class="container-fluid">
+
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+        <span class="navbar-brand">
+          parser/module_gui/module_textMode/module_guiMode <a href="index.html">API Documentation</a>
+        </span>
+
+        <a href="moduleIndex.html">
+          Modules
+        </a>
+
+        <a href="classIndex.html">
+          Classes
+        </a>
+
+        <a href="nameIndex.html">
+          Names
+        </a>
+
+        <div id="search-box-container">
+          <div class="input-group">
+            <input id="search-box" type="search" name="search-query" placeholder="Search..." aria-label="Search" minlength="2" class="form-control" autocomplete="off" />
+            
+            <span class="input-group-btn">
+              <a style="display: none;" class="btn btn-default" id="search-clear-button" title="Clear" onclick="clearSearch()"><img src="fonts/x-circle.svg" alt="Clear" /></a>
+              <a class="btn btn-default" id="search-help-button" title="Help" onclick="toggleSearchHelpText()"><img src="fonts/info.svg" alt="Help" /></a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="search-results-container" style="display: none;">
+        
+        <div id="search-buttons">
+          <span class="label label-default" id="search-docstrings-button">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="toggle-search-in-docstrings-checkbox" value="false" onclick="toggleSearchInDocstrings()">
+              search in docstrings
+            </input>
+          </label>
+          </span>
+          
+        </div>
+        
+        <noscript>
+            <h1>Cannot search: JavaScript is not supported/enabled in your browser.</h1>
+        </noscript>
+
+        <div class="hint" id="search-help-box">
+          <p class="rst-last">
+      
+            Search bar offers the following options:
+            <ul>   
+                <li>
+                  <strong>Term presence.</strong> The below example searches for documents that 
+                    must contain “foo”, might contain “bar” and must not contain “baz”: <code>+foo bar -baz</code>
+                </li> 
+
+                <li>
+                  <strong>Wildcards.</strong> The below example searches for documents with words beginning with “foo”: <code>foo*</code>
+                </li> 
+
+                <li>
+                  <strong>Search in specific fields.</strong> The following search matches all objects 
+                  in "twisted.mail" that matches “search”: <code>+qname:twisted.mail.* +search</code>
+
+                  <p>
+                    Possible fields: 'name', 'qname' (fully qualified name), 'docstring', and 'kind'.
+                    Last two fields are only applicable if "search in docstrings" is enabled.
+                  </p>
+                </li>
+
+                <li>
+                  <strong>Fuzzy matches.</strong> The following search matches all documents 
+                  that have a word within 1 edit distance of “foo”: <code>foo~1</code>
+                </li>
+            </ul>
+
+          </p>
+        </div>
+
+        <div id="search-status"> </div>
+
+        <div class="warning" id="search-warn-box" style="display: none;">
+          <p class="rst-last"><span id="search-warn"></span></p>
+        </div>
+
+        <table id="search-results">
+          <!-- Filled dynamically by JS -->
+        </table>
+        
+        <div style="margin-top: 8px;">
+          <p>Results provided by <a href="https://lunrjs.com">Lunr.js</a></p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</nav>
+    
+    <div class="container-fluid">
+
+      <!-- Side navigation -->
+      <div class="sidebarcontainer" style="display: none;">
+        
+        <div class="sidebar"><nav class="sidebar">
+  
+
+  <div>
+
+      <div class="thingTitle">
+        <span>Module</span>
+        <code class="thisobject"><a href="module_gui.html" class="internal-link" title="This module">module<wbr></wbr>_gui</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        
+        
+
+        <div class="childrenKindTitle">Functions</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#position" class="internal-link" title="module_gui.position">position</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#reply" class="internal-link" title="module_gui.reply">reply</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#resize" class="internal-link" title="module_gui.resize">resize</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#runGui" class="internal-link" title="module_gui.runGui">run<wbr></wbr>Gui</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#setBg" class="internal-link" title="module_gui.setBg">set<wbr></wbr>Bg</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#setBody" class="internal-link" title="module_gui.setBody">set<wbr></wbr>Body</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#setFg" class="internal-link" title="module_gui.setFg">set<wbr></wbr>Fg</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#setFont" class="internal-link" title="module_gui.setFont">set<wbr></wbr>Font</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#setTitle" class="internal-link" title="module_gui.setTitle">set<wbr></wbr>Title</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#show" class="internal-link" title="module_gui.show">show</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#showImg" class="internal-link" title="module_gui.showImg">show<wbr></wbr>Img</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        <div class="childrenKindTitle">Variables</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#bg" class="internal-link" title="module_gui.bg">bg</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#canvas" class="internal-link" title="module_gui.canvas">canvas</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#col_bg" class="internal-link" title="module_gui.col_bg">col<wbr></wbr>_bg</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#col_dark" class="internal-link" title="module_gui.col_dark">col<wbr></wbr>_dark</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#col_form" class="internal-link" title="module_gui.col_form">col<wbr></wbr>_form</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#col_light" class="internal-link" title="module_gui.col_light">col<wbr></wbr>_light</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#column" class="internal-link" title="module_gui.column">column</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#container" class="internal-link" title="module_gui.container">container</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#l" class="internal-link" title="module_gui.l">l</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#row" class="internal-link" title="module_gui.row">row</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#scrollable_frame" class="internal-link" title="module_gui.scrollable_frame">scrollable<wbr></wbr>_frame</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#scrollbar" class="internal-link" title="module_gui.scrollbar">scrollbar</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#style" class="internal-link" title="module_gui.style">style</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#toolbar" class="internal-link" title="module_gui.toolbar">toolbar</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#urlBox" class="internal-link" title="module_gui.urlBox">url<wbr></wbr>Box</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#window" class="internal-link" title="module_gui.window">window</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+        
+      </div>
+  </div>
+
+</nav>
+        </div>
+        <div id="collapseSideBar">
+          <a class="btn btn-link" onclick="toggleSideBarCollapse()" title="Toggle Sidebar Collapse">
+          </a>
+        </div> 
+        <script src="sidebartoggle.js" type="text/javascript"></script>
+       
+      </div>
+
+      <div id="main" class="">
+        
+
+        
+
+        <div class="page-header">
+          <h1 class="module"><code><code><a href="module_gui.html" class="internal-link">module_gui</a></code></code></h1>
+          <div id="showPrivate">
+            <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+          </div>
+        </div>
+
+        <div class="categoryHeader">
+          module documentation
+        </div>
+
+        <div class="extrasDocstring">
+          
+          <p></p>
+        </div>
+
+        <div class="moduleDocstring">
+          <div><p class="undocumented">Undocumented</p></div>
+        </div>
+
+        <div id="splitTables">
+          <table class="children sortable" id="id2">
+  
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#position" class="internal-link" title="module_gui.position">position</a></code></td>
+    <td>Sets position.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#reply" class="internal-link" title="module_gui.reply">reply</a></code></td>
+    <td>Sends url to the main module and loads the new page.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#resize" class="internal-link" title="module_gui.resize">resize</a></code></td>
+    <td>Resizes the window.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#runGui" class="internal-link" title="module_gui.runGui">run<wbr></wbr>Gui</a></code></td>
+    <td>Runs the gui.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#setBg" class="internal-link" title="module_gui.setBg">set<wbr></wbr>Bg</a></code></td>
+    <td>Sets background.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#setBody" class="internal-link" title="module_gui.setBody">set<wbr></wbr>Body</a></code></td>
+    <td>Sets the background and other settings that are related to body.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#setFg" class="internal-link" title="module_gui.setFg">set<wbr></wbr>Fg</a></code></td>
+    <td>Sets foreground.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#setFont" class="internal-link" title="module_gui.setFont">set<wbr></wbr>Font</a></code></td>
+    <td>Sets the font.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#setTitle" class="internal-link" title="module_gui.setTitle">set<wbr></wbr>Title</a></code></td>
+    <td>Sets the title of the window.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#show" class="internal-link" title="module_gui.show">show</a></code></td>
+    <td>Shows the text as label.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#showImg" class="internal-link" title="module_gui.showImg">show<wbr></wbr>Img</a></code></td>
+    <td>Shows the image.</td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#bg" class="internal-link" title="module_gui.bg">bg</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#canvas" class="internal-link" title="module_gui.canvas">canvas</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#col_bg" class="internal-link" title="module_gui.col_bg">col<wbr></wbr>_bg</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#col_dark" class="internal-link" title="module_gui.col_dark">col<wbr></wbr>_dark</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#col_form" class="internal-link" title="module_gui.col_form">col<wbr></wbr>_form</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#col_light" class="internal-link" title="module_gui.col_light">col<wbr></wbr>_light</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#column" class="internal-link" title="module_gui.column">column</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#container" class="internal-link" title="module_gui.container">container</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#l" class="internal-link" title="module_gui.l">l</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#row" class="internal-link" title="module_gui.row">row</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#scrollable_frame" class="internal-link" title="module_gui.scrollable_frame">scrollable<wbr></wbr>_frame</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#scrollbar" class="internal-link" title="module_gui.scrollbar">scrollbar</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#style" class="internal-link" title="module_gui.style">style</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#toolbar" class="internal-link" title="module_gui.toolbar">toolbar</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#urlBox" class="internal-link" title="module_gui.urlBox">url<wbr></wbr>Box</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><code><a href="#window" class="internal-link" title="module_gui.window">window</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+            
+        </div>
+
+        <div id="childList">
+          <div class="basefunction">
+  
+  
+  <a name="module_gui.position">
+    
+  </a>
+  <a name="position">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">position</span><span class="function-signature">()</span>:
+    
+    <a class="headerLink" href="#position" title="module_gui.position">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Sets position.</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="module_gui.reply">
+    
+  </a>
+  <a name="reply">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">reply</span><span class="function-signature">(url)</span>:
+    
+    <a class="headerLink" href="#reply" title="module_gui.reply">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Sends url to the main module and loads the new page.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">url:</span>str</td><td class="fieldArgDesc">url</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="module_gui.resize">
+    
+  </a>
+  <a name="resize">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">resize</span><span class="function-signature">(self)</span>:
+    
+    <a class="headerLink" href="#resize" title="module_gui.resize">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Resizes the window.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">self:</span>object</td><td class="fieldArgDesc">the parent</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="module_gui.runGui">
+    
+  </a>
+  <a name="runGui">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">runGui</span><span class="function-signature">()</span>:
+    
+    <a class="headerLink" href="#runGui" title="module_gui.runGui">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Runs the gui.</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="module_gui.setBg">
+    
+  </a>
+  <a name="setBg">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">setBg</span><span class="function-signature">()</span>:
+    
+    <a class="headerLink" href="#setBg" title="module_gui.setBg">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Sets background.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">str</td><td class="fieldArgDesc">color</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="module_gui.setBody">
+    
+  </a>
+  <a name="setBody">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">setBody</span><span class="function-signature">()</span>:
+    
+    <a class="headerLink" href="#setBody" title="module_gui.setBody">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Sets the background and other settings that are related to body.</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="module_gui.setFg">
+    
+  </a>
+  <a name="setFg">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">setFg</span><span class="function-signature">()</span>:
+    
+    <a class="headerLink" href="#setFg" title="module_gui.setFg">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Sets foreground.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">str</td><td class="fieldArgDesc">color</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="module_gui.setFont">
+    
+  </a>
+  <a name="setFont">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">setFont</span><span class="function-signature">()</span>:
+    
+    <a class="headerLink" href="#setFont" title="module_gui.setFont">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Sets the font.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer">tkinter.font.Font</td><td class="fieldArgDesc">font</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="module_gui.setTitle">
+    
+  </a>
+  <a name="setTitle">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">setTitle</span><span class="function-signature">(title)</span>:
+    
+    <a class="headerLink" href="#setTitle" title="module_gui.setTitle">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Sets the title of the window.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">title:</span>str</td><td class="fieldArgDesc">title</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="module_gui.show">
+    
+  </a>
+  <a name="show">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">show</span><span class="function-signature">(text)</span>:
+    
+    <a class="headerLink" href="#show" title="module_gui.show">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Shows the text as label.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">text:</span>str</td><td class="fieldArgDesc">text</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="module_gui.showImg">
+    
+  </a>
+  <a name="showImg">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">showImg</span><span class="function-signature">(img)</span>:
+    
+    <a class="headerLink" href="#showImg" title="module_gui.showImg">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Shows the image.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">img:</span>file</td><td class="fieldArgDesc">file with image</td></tr></table></div>
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="module_gui.bg">
+    
+  </a>
+  <a name="bg">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">bg</span>: <code>str</code> =
+    
+    <a class="headerLink" href="#bg" title="module_gui.bg">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="module_gui.canvas">
+    
+  </a>
+  <a name="canvas">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">canvas</span> =
+    
+    <a class="headerLink" href="#canvas" title="module_gui.canvas">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="module_gui.col_bg">
+    
+  </a>
+  <a name="col_bg">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">col_bg</span>: <code>str</code> =
+    
+    <a class="headerLink" href="#col_bg" title="module_gui.col_bg">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="module_gui.col_dark">
+    
+  </a>
+  <a name="col_dark">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">col_dark</span>: <code>str</code> =
+    
+    <a class="headerLink" href="#col_dark" title="module_gui.col_dark">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="module_gui.col_form">
+    
+  </a>
+  <a name="col_form">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">col_form</span>: <code>str</code> =
+    
+    <a class="headerLink" href="#col_form" title="module_gui.col_form">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="module_gui.col_light">
+    
+  </a>
+  <a name="col_light">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">col_light</span>: <code>str</code> =
+    
+    <a class="headerLink" href="#col_light" title="module_gui.col_light">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="module_gui.column">
+    
+  </a>
+  <a name="column">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">column</span>: <code>int</code> =
+    
+    <a class="headerLink" href="#column" title="module_gui.column">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="module_gui.container">
+    
+  </a>
+  <a name="container">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">container</span> =
+    
+    <a class="headerLink" href="#container" title="module_gui.container">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="module_gui.l">
+    
+  </a>
+  <a name="l">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">l</span>: <code>list</code> =
+    
+    <a class="headerLink" href="#l" title="module_gui.l">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="module_gui.row">
+    
+  </a>
+  <a name="row">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">row</span>: <code>int</code> =
+    
+    <a class="headerLink" href="#row" title="module_gui.row">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="module_gui.scrollable_frame">
+    
+  </a>
+  <a name="scrollable_frame">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">scrollable_frame</span> =
+    
+    <a class="headerLink" href="#scrollable_frame" title="module_gui.scrollable_frame">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="module_gui.scrollbar">
+    
+  </a>
+  <a name="scrollbar">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">scrollbar</span> =
+    
+    <a class="headerLink" href="#scrollbar" title="module_gui.scrollbar">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="module_gui.style">
+    
+  </a>
+  <a name="style">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">style</span> =
+    
+    <a class="headerLink" href="#style" title="module_gui.style">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="module_gui.toolbar">
+    
+  </a>
+  <a name="toolbar">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">toolbar</span> =
+    
+    <a class="headerLink" href="#toolbar" title="module_gui.toolbar">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="module_gui.urlBox">
+    
+  </a>
+  <a name="urlBox">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">urlBox</span> =
+    
+    <a class="headerLink" href="#urlBox" title="module_gui.urlBox">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div><div class="basevariable">
+  
+  
+  <a name="module_gui.window">
+    
+  </a>
+  <a name="window">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">window</span> =
+    
+    <a class="headerLink" href="#window" title="module_gui.window">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+    
+  </div>
+</div>
+        </div>
+      
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for parser/module_gui/module_textMode/module_guiMode,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    23.9.1 at 2023-12-23 15:06:06.
+  </div>
+
+  <!-- Search related scripts needs to be loaded at the end of HTML 
+    parsing not to introduce overhead and display HTML data asap -->
+  <script src="ajax.js" type="text/javascript"></script>
+  <script src="searchlib.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
+
+</footer>
+  
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
